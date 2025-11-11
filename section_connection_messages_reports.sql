@@ -1,12 +1,17 @@
 CREATE TABLE `messages`
 (
+	`messageID` INT NOT NULL,
+	`message` VARCHAR(200) NULL,
 	`userID` INT NOT NULL,
 	`userName` VARCHAR(45) NOT NULL,
 	`timestamp` DATETIME NOT NULL,
-	`messageID` INT NOT NULL,
-	`message` VARCHAR(200) NULL,
 	`chatID` INT NOT NULL,
-	PRIMARY KEY (`userID`)
+	PRIMARY KEY (`messageID`)
+	CONSTRAINT `chat_id`
+		FOREIGN KEY(`chatID`)
+		REFERENCES `chatrooms`
+		ON DELETE NO ACTION,
+		ON UPDATE NO ACTION,
 );
 
 CREATE TABLE `reports`
@@ -32,4 +37,20 @@ CREATE TABLE `reports`
 		REFERENCES `messages` (`messageID`)
 		ON DELETE NO ACTION
 		ON UPDATE NO ACTION
+);
+
+CREATE TABLE `users`
+(
+	`userID` INT NOT NULL,
+	`userName` VARCHAR(45) NOT NULL,
+	`email` VARCHAR(45) NOT NULL,
+	PRIMARY KEY (`userID`)
+);
+
+CREATE TABLE `chatrooms`
+(
+	`chatID` INT NOT NULL,
+	`courseNum` INT NOT NULL,
+	`courseName` VARCHAR(100) NOT NULL,
+	PRIMARY KEY(`chatID`)
 );
