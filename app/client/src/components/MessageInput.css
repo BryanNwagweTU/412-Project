@@ -1,0 +1,14 @@
+.message-input {
+  display: flex;
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1em;
+}
+
+.message-input button {
+  padding: 10px;
+  font-size: 1em;
+}
