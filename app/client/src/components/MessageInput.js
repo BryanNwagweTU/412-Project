@@ -2,30 +2,47 @@
 import React, { useState } from 'react';
 import './MessageInput.css';
 
-function MessageInput({ addMessage }) {
+function MessageInput({ addMessage, disabled = false }) {
   const [text, setText] = useState('');
 
   const handleSend = () => {
     if (text.trim() !== '') {
-      addMessage('You', text); // 'You' as placeholder username
-      setText(''); // clear input
+      addMessage(text);
+      setText('');
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') handleSend(); // send on Enter
+  const handleKeyDown = (e) => {
+    if (disabled) return;
+    
+    // Send on Enter (only if Shift is not pressed)
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+    // Add newline on Shift+Enter
+    else if (e.key === 'Enter' && e.shiftKey) {
+      e.preventDefault();
+      setText(text + '\n');
+    }
+    // Add tab on Tab key
+    else if (e.key === 'Tab') {
+      e.preventDefault();
+      setText(text + '\t');
+    }
   };
 
   return (
     <div className="message-input">
-      <input
-        type="text"
+      <textarea
         value={text}
         onChange={(e) => setText(e.target.value)}
-        onKeyPress={handleKeyPress}
-        placeholder="Type a message..."
+        onKeyDown={handleKeyDown}
+        placeholder="Type a message... (Shift+Enter for newline, Tab for indent)"
+        rows="3"
+        disabled={disabled}
       />
-      <button onClick={handleSend}>Send</button>
+      <button onClick={handleSend} disabled={disabled}>Send</button>
     </div>
   );
 }
