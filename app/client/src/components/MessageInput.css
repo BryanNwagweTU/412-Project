@@ -1,14 +1,69 @@
 .message-input {
   display: flex;
+  gap: 12px;
+  padding: 0 20px 20px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  width: calc(100% - 40px);
 }
 
-.message-input input {
+.message-input textarea {
   flex: 1;
-  padding: 10px;
-  font-size: 1em;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: inherit;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  resize: none;
+  max-height: 120px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  transition: all 0.2s ease;
+}
+
+.dark-mode .message-input textarea {
+  background-color: #2d2d2d;
+  color: #e0e0e0;
+  border-color: #444;
+}
+
+.message-input textarea:focus {
+  outline: none;
+  border-color: #6496ff;
+  box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.1);
+}
+
+.dark-mode .message-input textarea:focus {
+  box-shadow: 0 0 0 3px rgba(100, 150, 255, 0.2);
+}
+
+.message-input textarea::placeholder {
+  color: #999;
+}
+
+.dark-mode .message-input textarea::placeholder {
+  color: #666;
 }
 
 .message-input button {
-  padding: 10px;
-  font-size: 1em;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6496ff 0%, #4575e8 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.message-input button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(100, 150, 255, 0.4);
+}
+
+.message-input button:active {
+  transform: translateY(0);
 }
