@@ -5,7 +5,7 @@ import './MessageItem.css';
 function MessageItem({ message }) {
   return (
     <div className="message-item">
-      <strong>{message.user}</strong> {message.text}
+      <strong>{message.user_name}</strong>: {message.text}
       <span className="timestamp">{message.timestamp}</span>
     </div>
   );

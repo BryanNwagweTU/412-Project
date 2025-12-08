@@ -17,6 +17,7 @@ function App() {
   const [isNameSet, setIsNameSet] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
 
   // Apply dark-mode class to body element
   useEffect(() => {
@@ -26,37 +27,8 @@ function App() {
       document.body.classList.remove('dark-mode');
     }
   }, [isDarkMode]);
+  
 
-  // State: messages organized by course
-  const [messagesByCourse, setMessagesByCourse] = useState({
-    'Computer Science 2': [
-      { id: 1, user: 'Alice', text: 'Anyone understand pointers?', timestamp: '10:00 AM' },
-      { id: 2, user: 'Bob', text: 'Yeah, they can be tricky!', timestamp: '10:01 AM' }
-    ],
-    'Databases and Algorithms': [
-      { id: 1, user: 'Charlie', text: 'Dynamic programming is confusing', timestamp: '2:30 PM' },
-      { id: 2, user: 'Diana', text: 'Break it down step by step', timestamp: '2:31 PM' }
-    ],
-    'Software Engineering': [],
-    'Operating Systems': []
-  });
-
-  // Function to add a new message to current course
-  const addMessage = (text) => {
-    if (!selectedCourse) return;
-
-    const newMessage = {
-      id: (messagesByCourse[selectedCourse]?.length || 0) + 1,
-      user: username,
-      text,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    };
-
-    setMessagesByCourse(prev => ({
-      ...prev,
-      [selectedCourse]: [...(prev[selectedCourse] || []), newMessage]
-    }));
-  };
 
   // Handle username submission
   const handleUsernameSubmit = () => {
@@ -131,9 +103,13 @@ function App() {
         <h1>{selectedCourse}</h1>
         <p>Logged in as: <strong>{username}</strong></p>
         <button className="back-button" onClick={handleBackToCourses}>← Back to Courses</button>
-      </div>
-      <MessageList messages={messagesByCourse[selectedCourse] || []} />
-      <MessageInput addMessage={addMessage} />
+      </div>      
+      <MessageList course={selectedCourse} reloadKey={reloadKey} />
+      <MessageInput
+        course={selectedCourse}
+        username={username}
+        onNewMessage={() => setReloadKey(prev => prev + 1)}
+      />
     </div>
   );
 }
