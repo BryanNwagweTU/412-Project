@@ -3,6 +3,14 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import MessageList from './components/MessageList';
 import MessageInput from './components/MessageInput';
+import AITutorModal from './components/AITutor';
+
+const COURSES = [
+  'Computer Science 2',
+  'Databases and Algorithms',
+  'Software Engineering',
+  'Operating Systems'
+];
 
 const COURSES = [
   'Computer Science 2',

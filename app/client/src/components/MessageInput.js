@@ -1,9 +1,12 @@
 // src/components/MessageInput.js
 import React, { useState } from 'react';
+import { postMessage } from '../api';
 import './MessageInput.css';
 
 function MessageInput({ addMessage, disabled = false }) {
   const [text, setText] = useState('');
+  const [loading, setLoading] = useState(false); // optional: disable button while sending
+  const [error, setError] = useState('');
 
   const handleSend = () => {
     if (text.trim() !== '') {
