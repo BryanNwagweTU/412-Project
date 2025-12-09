@@ -33,28 +33,14 @@ app.use(bodyParser.json());
 const { execSync } = require("child_process");
 
 let PYTHON = process.env.PYTHON || process.env.PYTHON3 || "";
-if (!PYTHON) {
-  try {
-    PYTHON = execSync("which python3").toString().trim();
-  } catch (e) {
-    // fallback list
-    const fallbacks = ["/usr/bin/python3", "/usr/local/bin/python3", "/opt/anaconda3/bin/python3"];
-    for (const p of fallbacks) {
-      try {
-        execSync(`${p} --version`);
-        PYTHON = p;
-        break;
-      } catch (err) {
-        // continue
-      }
-    }
-  }
-}
 
 if (!PYTHON) {
-  console.error("No python3 executable found. Set the PYTHON environment variable to point to python3.");
+  console.error("No python executable found. Set the PYTHON environment variable.");
   process.exit(1);
 }
+
+console.log(`[STARTUP] Using Python executable: ${PYTHON}`);
+
 
 const PYTHON_PATH = path.join(__dirname, "ai_backend.py");
 

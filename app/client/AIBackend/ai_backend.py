@@ -7,12 +7,18 @@ import sys
 import os
 import json
 from openai import OpenAI
+from dotenv import load_dotenv
+import pathlib
+
 
 # Write startup info to stderr for Node.js to log (don't interfere with stdout response)
 print("[ai_backend.py] Starting...", file=sys.stderr)
 
 # Load API key from environment variable. It's unsafe to hardcode API keys in
 # source control; set OPENAI_API_KEY in the environment before running.
+BASE_DIR = pathlib.Path(__file__).parent
+load_dotenv(dotenv_path=BASE_DIR / ".env")      #tells python to load .env file from this directory
+
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 if not OPENAI_API_KEY:
     print("[ai_backend.py] Error: OPENAI_API_KEY environment variable is not set.", file=sys.stderr)
