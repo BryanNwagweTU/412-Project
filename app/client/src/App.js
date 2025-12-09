@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import MessageList from './components/MessageList';
 import MessageInput from './components/MessageInput';
+import AITutorModal from './components/AITutor';
 
 const COURSES = [
   'Computer Science 2',
@@ -18,6 +19,7 @@ function App() {
   const [selectedCourse, setSelectedCourse] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
+  const [isAITutorOpen, setIsAITutorOpen] = useState(false);
 
   // Apply dark-mode class to body element
   useEffect(() => {
@@ -89,6 +91,18 @@ function App() {
             </button>
           ))}
         </div>
+        <button
+          className="ai-helper-icon"
+          onClick={() => setIsAITutorOpen(prev => !prev)}
+          title="Open AI Tutor"
+        >
+          🤖
+        </button>
+
+        {/* Only render modal when isAITutorOpen is true */}
+        {isAITutorOpen && (
+          <AITutorModal isOpen={isAITutorOpen} onClose={() => setIsAITutorOpen(false)} />
+        )}
       </div>
     );
   }
@@ -110,6 +124,18 @@ function App() {
         username={username}
         onNewMessage={() => setReloadKey(prev => prev + 1)}
       />
+      <button
+          className="ai-helper-icon"
+          onClick={() => setIsAITutorOpen(prev => !prev)}
+          title="Open AI Tutor"
+        >
+          🤖
+        </button>
+
+        {/* Only render modal when isAITutorOpen is true */}
+        {isAITutorOpen && (
+          <AITutorModal isOpen={isAITutorOpen} onClose={() => setIsAITutorOpen(false)} />
+        )}
     </div>
   );
 }

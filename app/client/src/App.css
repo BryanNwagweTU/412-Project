@@ -1,15 +1,30 @@
+/* 
+   Base App Styles
+*/
 .App {
   min-height: 100vh;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  position: relative;
   background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
   transition: background 0.3s ease;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow: visible;
 }
 
 .App.dark-mode {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: #dbdee1;
 }
 
+/* 
+   Theme Toggle Button
+ */
 .theme-toggle {
   position: fixed;
   top: 20px;
@@ -39,6 +54,9 @@
   transform: scale(0.95);
 }
 
+/* 
+   Name Input Screen
+ */
 .name-input-container {
   flex: 1;
   display: flex;
@@ -49,6 +67,7 @@
   max-width: 500px;
   margin: auto;
   width: 100%;
+  gap: 16px;
 }
 
 .name-input-container input {
@@ -104,37 +123,9 @@
   transform: translateY(0);
 }
 
-h1 {
-  text-align: center;
-  font-size: 32px;
-  margin: 0;
-  font-weight: 700;
-  background: linear-gradient(135deg, #6496ff 0%, #4575e8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 20px;
-}
-
-.dark-mode h1 {
-  background: linear-gradient(135deg, #8cb4ff 0%, #6496ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-h2 {
-  text-align: center;
-  font-size: 24px;
-  margin: 20px 0;
-  color: #555;
-  font-weight: 600;
-}
-
-.dark-mode h2 {
-  color: #b0b0b0;
-}
-
+/* 
+   Course Selection
+ */
 .course-selection {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -170,6 +161,9 @@ h2 {
   transform: translateY(-2px);
 }
 
+/* 
+   Chatroom Header
+ */
 .chatroom-header {
   background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
   border-bottom: 1px solid #e0e0e0;
@@ -221,4 +215,78 @@ h2 {
 .dark-mode .back-button:hover {
   background-color: #333;
   border-color: #666;
+}
+
+/* 
+   AI Tutor Button (Bottom Right)
+*/
+.ai-helper-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1500;
+  background-color: #6496ff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.ai-helper-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.ai-helper-icon:active {
+  transform: scale(0.95);
+}
+
+
+/*AI Tutor Modal Overlay*/
+
+.ai-tutor-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.ai-tutor-modal {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  position: relative;
+}
+
+.dark-mode .ai-tutor-modal {
+  background-color: #2f3136;
+  color: #dbdee1;
+}
+
+.ai-tutor-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: inherit;
 }
