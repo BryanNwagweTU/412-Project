@@ -1,48 +1,50 @@
 .message-item {
   display: flex;
   flex-direction: column;
-  padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
-  word-wrap: break-word;
-  white-space: pre-wrap;
-  overflow-wrap: break-word;
+  gap: 2px;
+  padding: 8px 0;
+  animation: slideIn 0.2s ease;
 }
 
-.dark-mode .message-item {
-  border-bottom-color: #333;
-}
-
-.message-item:last-child {
-  border-bottom: none;
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .message-item strong {
-  color: #6496ff;
-  font-weight: 700;
-  margin-bottom: 4px;
+  color: #7289da;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .dark-mode .message-item strong {
-  color: #8cb4ff;
+  color: #7289da;
 }
 
-.message-content {
-  color: #333;
-  font-size: 15px;
+.message-item p {
+  margin: 0;
+  color: #2c2f33;
   line-height: 1.4;
+  font-size: 14px;
 }
 
-.dark-mode .message-content {
-  color: #d0d0d0;
+.dark-mode .message-item p {
+  color: #dbdee1;
 }
 
 .timestamp {
   font-size: 12px;
-  color: #999;
-  margin-top: 4px;
-  font-weight: 500;
+  color: #72767d;
+  margin-top: 2px;
+  display: block;
 }
 
 .dark-mode .timestamp {
-  color: #777;
+  color: #72767d;
 }

@@ -1,4 +1,6 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -10,14 +12,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background: #f0f0f0;
+  min-height: 100vh;
+  padding: 20px;
 }
 
 body.dark-mode {
-  background-color: #121212;
-  color: #e0e0e0;
+  background: #36393f;
 }
 
 code {
